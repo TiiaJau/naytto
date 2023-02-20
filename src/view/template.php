@@ -10,7 +10,13 @@
       <h1><a href="<?=BASEURL?>">Teerivaaran koiraharrastajat</a></h1>
     </header>
     <section>
-      <?=$this->section('content')?>
+      <h1>Aktiivista tekemistä koirasi kanssa!</h1>
+      <div class="kuva kuva--oikea">       
+      <img src="images/koira.jpg" alt="">  </div> 
+      <p><br>Teerivaaran koiraharrastajat ry on vuonna 2023 kuvitteellisesti perustettu koiraharrastukseen ja -urheiluun keskittyvä yhdistys. <br>
+      Tavoitteena on luoda todellista koirakerhon toimintaa vastaavat nettisivustot. <br>
+      Sivustot on luotu Tiia Jauhiaisen BackEnd näyttötyönä ja kaikki sivuston tiedot ovat kuvitteellisia.<br><br><br><br><br><br><br><br><br><br></p>
+   <?=$this->section('content')?>
     </section>
     <footer>
       <hr>

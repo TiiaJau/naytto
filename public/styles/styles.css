@@ -31,6 +31,14 @@
     margin-left: 0.5rem;
   }
 
+  p {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+
+  .kuva--oikea {
+    float: right;
+  }
+
   header a {
     color: #ffffffec;
     text-decoration: none;
@@ -64,3 +72,4 @@
   .tapahtumat > div > div:nth-child(3) {
     text-align: right;
   }
+
