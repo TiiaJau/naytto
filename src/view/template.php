@@ -6,7 +6,7 @@
   </head>
   <body>
     <header>
-      <h1>Teerivaaran koiraharrastajat</h1>
+      <h1><a href="<?=BASEURL?>">Teerivaaran koiraharrastajat</a></h1>
     </header>
     <section>
       <?=$this->section('content')?>
