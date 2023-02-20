@@ -16,7 +16,7 @@
       <hr>
       <div>Teerivaaran koiraharrastajat Ry<br>
       Teerivaarantie 91<br>
-      83700 Polvijärvi<br<<br>
+      83700 Polvijärvi<br><br>
     p: 0501234567<br>
   email: tvkoira@sahkoposti.fi</div>
     </footer>
