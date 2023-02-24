@@ -26,6 +26,10 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
     } else {
       echo $templates->render('tapahtumanotfound');
     }
+    //UUSI RIVI 24.2.2023 klo 8:30
+  } else if ($request === '/lisaa_tili') {
+    echo $templates->render('lisaa_tili');
+    //UUSI RIVI LOPPUU
   } else {
     echo $templates->render('notfound');
   }
