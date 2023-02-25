@@ -3,6 +3,9 @@
   // Aloitetaan istunnot.
   session_start();
 
+    // Suoritetaan projektin alustusskripti.
+    require_once '../src/init.php';
+
     // Haetaan kirjautuneen käyttäjän tiedot.
     if (isset($_SESSION['user'])) {
       require_once MODEL_DIR . 'henkilo.php';
@@ -10,9 +13,6 @@
     } else {
       $loggeduser = NULL;
     }
-
-  // Suoritetaan projektin alustusskripti.
-  require_once '../src/init.php';
 
   // Siistitään polku urlin alusta ja mahdolliset parametrit urlin lopusta.
   // Siistimisen jälkeen osoite /~tjauhiai/naytto/tapahtuma?id=1 on 

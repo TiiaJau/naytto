@@ -91,7 +91,7 @@
     font-size: 1rem;
   }
 
-  input[type=submit] {
+  input[type=submit], .button {
     padding: 0.5rem 3rem;
     border-radius: 0.3rem;
     background-color: #454345;
@@ -117,4 +117,15 @@
   
   .info a {
     color: #550754;
+  }
+
+  .flexarea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .button {
+    text-decoration: none;
   }
