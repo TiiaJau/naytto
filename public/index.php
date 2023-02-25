@@ -1,5 +1,8 @@
 <?php
 
+  // Aloitetaan istunnot.
+  session_start();
+
   // Suoritetaan projektin alustusskripti.
   require_once '../src/init.php';
 
@@ -69,7 +72,9 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
           if (isset($_POST['laheta'])) {
             require_once CONTROLLER_DIR . 'kirjaudu.php';
             if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-              echo "Kirjautuminen ok!";
+         // echo "Kirjautuminen Ok."; 
+         $_SESSION['user'] = $_POST['email'];
+          header("Location: " . $config['urls']['baseUrl']);
             } else {
               echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
             }
