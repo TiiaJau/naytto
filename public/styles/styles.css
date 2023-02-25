@@ -100,3 +100,16 @@
     color: red;
     font-size: 0.8rem;
   }
+
+  .info {
+    background-color: #f79acd;
+    border: 1px solid #393636;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+  }
+  
+  .info a {
+    color: #550754;
+  }
