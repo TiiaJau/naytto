@@ -10,4 +10,8 @@
   function haeHenkiloSahkopostilla($email) {
     return DB::run('SELECT * FROM omistaja WHERE email = ?;', [$email])->fetchAll();
   }
+
+  function haeHenkilo($email) {
+    return DB::run('SELECT * FROM omistaja WHERE email = ?;', [$email])->fetch();
+  }
 ?>
