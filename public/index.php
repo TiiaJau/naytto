@@ -52,15 +52,23 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
       $tapahtumat = haeTapahtumat();
       echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]);
       break;
-    case '/tapahtuma':
-      require_once MODEL_DIR . 'tapahtuma.php';
-      $tapahtuma = haeTapahtuma($_GET['id']);
-      if ($tapahtuma) {
-        echo $templates->render('tapahtuma',['tapahtuma' => $tapahtuma]);
-      } else {
-        echo $templates->render('tapahtumanotfound');
-      }
-      break;
+      case '/tapahtuma':
+        require_once MODEL_DIR . 'tapahtuma.php';
+        require_once MODEL_DIR . 'ilmoittautuminen.php';
+        $tapahtuma = haeTapahtuma($_GET['id']);
+        if ($tapahtuma) {
+          if ($loggeduser) {
+            $ilmoittautuminen = haeIlmoittautuminen($loggeduser['idhenkilo'],$tapahtuma['idtapahtuma']);
+          } else {
+            $ilmoittautuminen = NULL;
+          }
+          echo $templates->render('tapahtuma',['tapahtuma' => $tapahtuma,
+                                               'ilmoittautuminen' => $ilmoittautuminen,
+                                               'loggeduser' => $loggeduser]);
+        } else {
+          echo $templates->render('tapahtumanotfound');
+        }
+        break;
       case '/lisaa_tili':
         if (isset($_POST['laheta'])) {
           $formdata = cleanArrayData($_POST);
