@@ -23,6 +23,11 @@
   header {
     background-color: #975579;
     padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
   }
 
   header h1 {
