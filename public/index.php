@@ -146,7 +146,19 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
                     header("Location: " . $config['urls']['baseUrl']);
                   }
                   break;
-            
+                  case "/tilaa_vaihtoavain":
+                    $formdata = cleanArrayData($_POST);
+                    // Tarkistetaan, onko lomakkeelta lähetetty tietoa.
+                    if (isset($formdata['laheta'])) {    
+                
+                      // TODO vaihtoavaimen tilauskäsittely
+                
+                    } else {
+                      // Lomakeelta ei ole lähetetty tietoa, tulostetaan lomake.
+                      echo $templates->render('tilaa_vaihtoavain_lomake');
+                    }
+                    break;
+              
     default:
       echo $templates->render('notfound');
   }    
