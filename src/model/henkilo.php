@@ -24,7 +24,7 @@
   }
 
   function asetaVaihtoavain($email,$avain) {
-    return DB::run('UPDATE henkilo SET nollausavain = ?, nollausaika = NOW() + INTERVAL 30 MINUTE WHERE email = ?', [$avain,$email])->rowCount();
+    return DB::run('UPDATE omistaja SET nollausavain = ?, nollausaika = NOW() + INTERVAL 30 MINUTE WHERE email = ?', [$avain,$email])->rowCount();
   }
 
   function tarkistaVaihtoavain($avain) {
