@@ -69,11 +69,11 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
           echo $templates->render('tapahtumanotfound');
         }
         break;
-      case '/lisaa_tili':
-        if (isset($_POST['laheta'])) {
-          $formdata = cleanArrayData($_POST);
-          require_once CONTROLLER_DIR . 'tili.php';
-          $tulos = lisaaTili($formdata);
+        case '/lisaa_tili':
+          if (isset($_POST['laheta'])) {
+            $formdata = cleanArrayData($_POST);
+            require_once CONTROLLER_DIR . 'tili.php';
+            $tulos = lisaaTili($formdata,$config['urls']['baseUrl']);
           if ($tulos['status'] == "200") {
             echo $templates->render('tili_luotu', ['formdata' => $formdata]);
             break;
