@@ -225,6 +225,18 @@ switch ($request) {
     }
                 
     break;
+
+    case "/yhteystiedot":
+      echo $templates->render('yhteystiedot');
+    break;
+
+    case "/jasen":
+      echo $templates->render('jasen');
+    break;
+
+    case "/tilat":
+      echo $templates->render('tilat');
+    break;
                 
     default:
       echo $templates->render('notfound');
