@@ -19,6 +19,13 @@
         ?>
       </div>
     </header>
+    <nav>
+      <div><a href="<?=BASEURL?>">Etusivu</a></div>
+      <div><a href="<?=BASEURL?>">Tapahtumat</a></div>
+      <div><a href="<?=BASEURL."/jasen"?>">Jäseneksi</a></div>
+      <div><a href="<?=BASEURL."/tilat"?>">Tilat</a></div>
+      <div><a href="<?=BASEURL."/yhteystiedot"?>">Yhteystiedot</a></div>
+    </nav>
     <section>
       <h1>Aktiivista tekemistä koirasi kanssa!</h1>
       <div class="kuva kuva--oikea">       
