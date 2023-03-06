@@ -45,14 +45,14 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
   //  echo $templates->render('notfound');
   //}
 
-  switch ($request) {
-    case '/':
-    case '/tapahtumat':
+switch ($request) {
+ case '/':
+ case '/tapahtumat':
       require_once MODEL_DIR . 'tapahtuma.php';
       $tapahtumat = haeTapahtumat();
       echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]);
       break;
-      case '/tapahtuma':
+ case '/tapahtuma':
         require_once MODEL_DIR . 'tapahtuma.php';
         require_once MODEL_DIR . 'ilmoittautuminen.php';
         $tapahtuma = haeTapahtuma($_GET['id']);
@@ -69,7 +69,7 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
           echo $templates->render('tapahtumanotfound');
         }
         break;
-        case '/lisaa_tili':
+  case '/lisaa_tili':
           if (isset($_POST['laheta'])) {
             $formdata = cleanArrayData($_POST);
             require_once CONTROLLER_DIR . 'tili.php';
@@ -84,7 +84,7 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
           echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
           break;
         }
-        case "/kirjaudu":
+  case "/kirjaudu":
           if (isset($_POST['laheta'])) {
             require_once CONTROLLER_DIR . 'kirjaudu.php';
             if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
@@ -104,7 +104,7 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
             echo $templates->render('kirjaudu', [ 'error' => []]);
           }
           break;
-          case "/logout":
+   case "/logout":
             require_once CONTROLLER_DIR . 'kirjaudu.php';
             logout();
             header("Location: " . $config['urls']['baseUrl']);
@@ -121,112 +121,110 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
                 header("Location: tapahtumat");
               }
               break;
-              case '/peru':
-                if ($_GET['id']) {
-                  require_once MODEL_DIR . 'ilmoittautuminen.php';
-                  $idtapahtuma = $_GET['id'];
-                  if ($loggeduser) {
-                    poistaIlmoittautuminen($loggeduser['idhenkilo'],$idtapahtuma);
-                  }
-                  header("Location: tapahtuma?id=$idtapahtuma");
-                } else {
-                  header("Location: tapahtumat");  
-                }
-                break;
-                case "/vahvista":
-                  if (isset($_GET['key'])) {
-                    $key = $_GET['key'];
-                    require_once MODEL_DIR . 'henkilo.php';
-                    if (vahvistaTili($key)) {
-                      echo $templates->render('tili_aktivoitu');
-                    } else {
-                      echo $templates->render('tili_aktivointi_virhe');
-                    }
-                  } else {
-                    header("Location: " . $config['urls']['baseUrl']);
-                  }
-                  break;
-                  case "/tilaa_vaihtoavain":
-                    $formdata = cleanArrayData($_POST);
-                    // Tarkistetaan, onko lomakkeelta lähetetty tietoa.
-                    if (isset($formdata['laheta'])) {    
+    case '/peru':
+    if ($_GET['id']) {
+    require_once MODEL_DIR . 'ilmoittautuminen.php';
+    $idtapahtuma = $_GET['id'];
+    if ($loggeduser) {
+    poistaIlmoittautuminen($loggeduser['idhenkilo'],$idtapahtuma);
+     }
+    header("Location: tapahtuma?id=$idtapahtuma");
+    } else {
+    header("Location: tapahtumat");  
+    }
+    break;
+    case "/vahvista":
+    if (isset($_GET['key'])) {
+    $key = $_GET['key'];
+    require_once MODEL_DIR . 'henkilo.php';
+    if (vahvistaTili($key)) {
+    echo $templates->render('tili_aktivoitu');
+    } else {
+    echo $templates->render('tili_aktivointi_virhe');
+    }
+    } else {
+    header("Location: " . $config['urls']['baseUrl']);
+    }
+    break;
+    case "/tilaa_vaihtoavain":
+    $formdata = cleanArrayData($_POST);
+    // Tarkistetaan, onko lomakkeelta lähetetty tietoa.
+    if (isset($formdata['laheta'])) {    
                 
-                      require_once MODEL_DIR . 'henkilo.php';
-                      // Tarkistetaan, onko lomakkeelle syötetty käyttäjätili olemassa.
-                      $user = haeHenkilo($formdata['email']);
-                      if ($user) {
-                        // Käyttäjätili on olemassa.
-                        // Luodaan salasanan vaihtolinkki ja lähetetään se sähköpostiin.
-                        require_once CONTROLLER_DIR . 'tili.php';
-                        $tulos = luoVaihtoavain($formdata['email'],$config['urls']['baseUrl']);
-                        if ($tulos['status'] == "200") {
-                          // Vaihtolinkki lähetty sähköpostiin, tulostetaan ilmoitus.
-                          echo $templates->render('tilaa_vaihtoavain_lahetetty');
-                          break;
-                        }
-                        // Vaihtolinkin lähetyksessä tapahtui virhe, tulostetaan
-                        // yleinen virheilmoitus.
-                        echo $templates->render('virhe');
-                        break;
-                      } else {
-                        // Tunnusta ei ollut, tulostetaan ympäripyöreä ilmoitus.
-                        echo $templates->render('tilaa_vaihtoavain_lahetetty');
-                        break;
-                      }
+    require_once MODEL_DIR . 'henkilo.php';
+    // Tarkistetaan, onko lomakkeelle syötetty käyttäjätili olemassa.
+    $user = haeHenkilo($formdata['email']);
+    if ($user) {
+    // Käyttäjätili on olemassa.
+    // Luodaan salasanan vaihtolinkki ja lähetetään se sähköpostiin.
+    require_once CONTROLLER_DIR . 'tili.php';
+    $tulos = luoVaihtoavain($formdata['email'],$config['urls']['baseUrl']);
+    if ($tulos['status'] == "200") {
+    // Vaihtolinkki lähetty sähköpostiin, tulostetaan ilmoitus.
+    echo $templates->render('tilaa_vaihtoavain_lahetetty');
+    break;
+    }
+    // Vaihtolinkin lähetyksessä tapahtui virhe, tulostetaan
+    // yleinen virheilmoitus.
+    echo $templates->render('virhe');
+    break;
+    } else {
+    // Tunnusta ei ollut, tulostetaan ympäripyöreä ilmoitus.
+    echo $templates->render('tilaa_vaihtoavain_lahetetty');
+    break;
+    }
               
                 
-                    } else {
-                      // Lomakeelta ei ole lähetetty tietoa, tulostetaan lomake.
-                      echo $templates->render('tilaa_vaihtoavain_lomake');
-                    }
-                    break;
-                    case "/reset":
-                      // Otetaan vaihtoavain talteen.
-                      $resetkey = $_GET['key'];
+    } else {
+    // Lomakeelta ei ole lähetetty tietoa, tulostetaan lomake.
+    echo $templates->render('tilaa_vaihtoavain_lomake');
+    }
+    break;
+    case "/reset":
+    // Otetaan vaihtoavain talteen.
+    $resetkey = $_GET['key'];
                 
-                      // Seuraavat tarkistukset tarkistavat, että onko vaihtoavain
-                      // olemassa ja se on vielä aktiivinen. Jos ei, niin tulostetaan
-                      // käyttäjälle virheilmoitus ja poistutaan.
-                      require_once MODEL_DIR . 'henkilo.php';
-                      $rivi = tarkistaVaihtoavain($resetkey);
-                      if ($rivi) {
-                        // Vaihtoavain löytyi, tarkistetaan onko se vanhentunut.
-                        if ($rivi['aikaikkuna'] < 0) {
-                          echo $templates->render('reset_virhe');
-                          break;
-                        }
-                      } else {
-                        echo $templates->render('reset_virhe');
-                        break;
-                      }
+    // Seuraavat tarkistukset tarkistavat, että onko vaihtoavain
+    // olemassa ja se on vielä aktiivinen. Jos ei, niin tulostetaan
+    // käyttäjälle virheilmoitus ja poistutaan.
+    require_once MODEL_DIR . 'henkilo.php';
+    $rivi = tarkistaVaihtoavain($resetkey);
+    if ($rivi) {
+    // Vaihtoavain löytyi, tarkistetaan onko se vanhentunut.
+    if ($rivi['aikaikkuna'] < 0) {
+    echo $templates->render('reset_virhe');
+    break;
+    }
+    } else {
+    echo $templates->render('reset_virhe');
+    break;
+    }
                 
-                      // Vaihtoavain on voimassa, tarkistetaan onko lomakkeen kautta
-                      // syötetty tietoa.
-                      $formdata = cleanArrayData($_POST);
-                      if (isset($formdata['laheta'])) {
+    // Vaihtoavain on voimassa, tarkistetaan onko lomakkeen kautta
+    // syötetty tietoa.
+    $formdata = cleanArrayData($_POST);
+    if (isset($formdata['laheta'])) {
                 
-                              // Lomakkeelle on syötetty uudet salasanat, annetaan syötteen
-        // käsittely kontrollerille.
-        require_once CONTROLLER_DIR . 'tili.php';
-        $tulos = resetoiSalasana($formdata,$resetkey);
-        // Tarkistetaan kontrollerin tekemän salasanaresetoinnin lopputulos.
-        if ($tulos['status'] == "200") {
-          // Salasana vaihdettu, tulostetaan ilmoitus.
-          echo $templates->render('reset_valmis');
-          break;
-        }
-        // Salasanan vaihto ei onnistunut, tulostetaan lomake virhetekstin kanssa.
-        echo $templates->render('reset_lomake', ['error' => $tulos['error']]);
-        break;
-
+    // Lomakkeelle on syötetty uudet salasanat, annetaan syötteen
+    // käsittely kontrollerille.
+    require_once CONTROLLER_DIR . 'tili.php';
+    $tulos = resetoiSalasana($formdata,$resetkey);
+    // Tarkistetaan kontrollerin tekemän salasanaresetoinnin lopputulos.
+    if ($tulos['status'] == "200") {
+    // Salasana vaihdettu, tulostetaan ilmoitus.
+    echo $templates->render('reset_valmis');
+    break;
+    }
+    // Salasanan vaihto ei onnistunut, tulostetaan lomake virhetekstin kanssa.
+    echo $templates->render('reset_lomake', ['error' => $tulos['error']]);
+    break;           
+     } else {
+     // Lomakkeen tietoja ei ole vielä täytetty, tulostetaan lomake.
+     echo $templates->render('reset_lomake', ['error' => '']);
+     break;
+    }
                 
-                      } else {
-                        // Lomakkeen tietoja ei ole vielä täytetty, tulostetaan lomake.
-                        echo $templates->render('reset_lomake', ['error' => '']);
-                        break;
-                      }
-                
-                      break;
+    break;
                 
     default:
       echo $templates->render('notfound');
