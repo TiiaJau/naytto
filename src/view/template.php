@@ -21,18 +21,12 @@
     </header>
     <nav>
       <div><a href="<?=BASEURL?>">Etusivu</a></div>
-      <div><a href="<?=BASEURL?>">Tapahtumat</a></div>
+      <div><a href="<?=BASEURL."/tapahtumat"?>">Tapahtumat</a></div>
       <div><a href="<?=BASEURL."/jasen"?>">Jäseneksi</a></div>
       <div><a href="<?=BASEURL."/tilat"?>">Tilat</a></div>
       <div><a href="<?=BASEURL."/yhteystiedot"?>">Yhteystiedot</a></div>
     </nav>
     <section>
-      <h1>Aktiivista tekemistä koirasi kanssa!</h1>
-      <div class="kuva kuva--oikea">       
-      <img src="images/koira.jpg" alt="">  </div> 
-      <p><br>Teerivaaran koiraharrastajat ry on vuonna 2023 kuvitteellisesti perustettu koiraharrastukseen ja -urheiluun keskittyvä yhdistys. <br>
-      Tavoitteena on luoda todellista koirakerhon toimintaa vastaavat nettisivustot. <br>
-      Sivustot on luotu Tiia Jauhiaisen BackEnd näyttötyönä ja kaikki sivuston tiedot ovat kuvitteellisia.<br><br><br><br><br><br><br><br><br><br></p>
    <?=$this->section('content')?>
     </section>
     <footer>

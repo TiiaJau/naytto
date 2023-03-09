@@ -47,6 +47,8 @@ $templates = new League\Plates\Engine(TEMPLATE_DIR);
 
 switch ($request) {
  case '/':
+  echo $templates->render('etusivu');
+      break;
  case '/tapahtumat':
       require_once MODEL_DIR . 'tapahtuma.php';
       $tapahtumat = haeTapahtumat();
