@@ -9,3 +9,6 @@ Kenttä löytyy osoitteesta Kuviteltuosoite 1, 83700 Polvijärvi<br><br>
 Halli löytyy osoitteesta Kuviteltuosoite 2, 83700 Polvijärvi<br><br>
 
 Ulkoilutathan koirasi huolella ennen kentälle tai hallille tuloa, kiitos!</p>
+<br><br>
+<div class="kuva kuva--alla">       
+      <img src="images/treeni.jpg" alt="">  </div> 
