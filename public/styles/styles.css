@@ -60,6 +60,10 @@
     float: right;
   }
 
+  .kuva--alla {
+    float: bottom;
+  }
+
   header a {
     color: #ffffffec;
     text-decoration: none;

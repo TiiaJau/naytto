@@ -20,3 +20,6 @@ echo "</div>";
 
 ?>
 </div>
+<br><br>
+<div class="kuva kuva--alla">       
+      <img src="images/bortsu.jpg" alt="">  </div> 
