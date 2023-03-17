@@ -13,11 +13,11 @@
     <input type="text" name="email" value="<?= getValue($formdata,'email') ?>">
     <div class="error"><?= getValue($error,'email'); ?></div>
   </div>
-  <div>
+ <!-- <div>
     <label>Discord-tunnus:</label>
-    <input type="text" name="discord" value="<?= getValue($formdata,'discord')?>">
-    <div class="error"><?= getValue($error,'discord'); ?></div>
-  </div>
+    <input type="text" name="discord" value=">">
+    <div class="error"> ?></div>
+  </div> -->
   <div>
     <label>Salasana:</label>
     <input type="password" name="salasana1">
